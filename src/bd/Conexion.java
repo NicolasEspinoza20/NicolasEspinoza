@@ -5,7 +5,7 @@ import java.sql.SQLException;
         
 /**
  *
- * @author 
+ * @author Nicolas Espinoza
  * @version 23-11-2021
  */
 public class Conexion {
@@ -25,8 +25,8 @@ public class Conexion {
         
         return connection;
     }
-//    public static void main(String[] args) {
-//        Conexion con = new Conexion();
-//        con.obtenerConexion();
-//    }
+    public static void main(String[] args) throws SQLException {
+        Conexion con = new Conexion();
+        con.obtenerConexion();
+   }
 }
