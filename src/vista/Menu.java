@@ -29,47 +29,67 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jmi_opciones = new javax.swing.JMenu();
+        jmi_agregar = new javax.swing.JMenuItem();
+        jmi_opcion = new javax.swing.JMenuItem();
+        jmi_listar = new javax.swing.JMenuItem();
+        jmi_salir = new javax.swing.JMenuItem();
+        jmi_acerca = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenu1.setText("Peliculas");
-
-        jMenu3.setText("Opciones");
-
-        jMenuItem1.setText("Agregar");
-        jMenu3.add(jMenuItem1);
-
-        jMenuItem2.setText("Eliminar");
-        jMenu3.add(jMenuItem2);
-
-        jMenu1.add(jMenu3);
-
-        jMenuItem4.setText("Listar Peliculas");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                jMenu1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
 
-        jMenu4.setText("Salir");
-        jMenu1.add(jMenu4);
+        jmi_opciones.setText("Opciones");
+
+        jmi_agregar.setText("Agregar");
+        jmi_agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_agregarActionPerformed(evt);
+            }
+        });
+        jmi_opciones.add(jmi_agregar);
+
+        jmi_opcion.setText("Eliminar");
+        jmi_opcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_opcionActionPerformed(evt);
+            }
+        });
+        jmi_opciones.add(jmi_opcion);
+
+        jMenu1.add(jmi_opciones);
+
+        jmi_listar.setText("Listar Peliculas");
+        jmi_listar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_listarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmi_listar);
+
+        jmi_salir.setText("Salir");
+        jmi_salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_salirActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmi_salir);
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Ayuda");
+        jmi_acerca.setText("Ayuda");
 
         jMenuItem5.setText("Acerca de");
-        jMenu2.add(jMenuItem5);
+        jmi_acerca.add(jMenuItem5);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jmi_acerca);
 
         setJMenuBar(jMenuBar1);
 
@@ -87,9 +107,25 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    private void jmi_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_listarActionPerformed
+            new ListarPeliculas().setVisible(true);
+    }//GEN-LAST:event_jmi_listarActionPerformed
+
+    private void jmi_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_agregarActionPerformed
+        new AgregarPelicula().setVisible(true);
+    }//GEN-LAST:event_jmi_agregarActionPerformed
+
+    private void jmi_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_salirActionPerformed
+            System.exit(0);
+    }//GEN-LAST:event_jmi_salirActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jmi_opcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_opcionActionPerformed
+        new EliminarPelicula().setVisible(true);
+    }//GEN-LAST:event_jmi_opcionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,13 +164,13 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenu jmi_acerca;
+    private javax.swing.JMenuItem jmi_agregar;
+    private javax.swing.JMenuItem jmi_listar;
+    private javax.swing.JMenuItem jmi_opcion;
+    private javax.swing.JMenu jmi_opciones;
+    private javax.swing.JMenuItem jmi_salir;
     // End of variables declaration//GEN-END:variables
 }
