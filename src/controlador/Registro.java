@@ -30,7 +30,7 @@ public class Registro {
             Connection cnx = con.obtenerConexion();
 
             date = pelicula.getPublicacionPelicula();
-            String query = "INSERT INTO LIBRO(titulo,autor,publicacion,precio,disponible) VALUES (?,?,?,?,?)";
+            String query = "INSERT INTO PELICULA(titulopelicula,autorpelicula,publicacionpelicula,preciopelicula,disponible) VALUES (?,?,?,?,?)";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setString(1, pelicula.getTituloPelicula());
             stmt.setString(2, pelicula.getAutorPelicula());
@@ -45,10 +45,10 @@ public class Registro {
 
         } catch (SQLException e) {
 
-            System.out.println("Error sql al agregar Libro");
+            System.out.println("Error sql al agregar pelicula");
             return false;
         } catch (Exception e) {
-            System.out.println("Error al agregar libro");
+            System.out.println("Error al agregar pelicula");
             return false;
         }
 
@@ -128,11 +128,11 @@ public class Registro {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                pelicula.setIdPelicula(rs.getInt("idLibro"));
-                pelicula.setTituloPelicula(rs.getString("titulo"));
-                pelicula.setAutorPelicula(rs.getString("autor"));
-                pelicula.setPublicacionPelicula(rs.getDate("publicacion"));
-                pelicula.setPrecioPelicula(rs.getInt("Precio"));
+                pelicula.setIdPelicula(rs.getInt("idpelicula"));
+                pelicula.setTituloPelicula(rs.getString("titulopelicula"));
+                pelicula.setAutorPelicula(rs.getString("autorpelicula"));
+                pelicula.setPublicacionPelicula(rs.getDate("publicacionpelicula"));
+                pelicula.setPrecioPelicula(rs.getInt("preciopelicula"));    
                 pelicula.setDisponible(rs.getBoolean("disponible"));
 
             }
@@ -157,18 +157,18 @@ public class Registro {
             Conexion con = new Conexion();
             Connection cnx = con.obtenerConexion();
 
-            String query = "SELECT * FROM pelicula order by titulo";
+            String query = "SELECT * FROM pelicula order by titulopelicula";
             PreparedStatement stmt = cnx.prepareStatement(query);
 
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 Pelicula pelicula = new Pelicula();
-                pelicula.setIdPelicula(rs.getInt("idLibro"));
-                pelicula.setTituloPelicula(rs.getString("titulo"));
-                pelicula.setAutorPelicula(rs.getString("autor"));
-                pelicula.setPublicacionPelicula(rs.getDate("publicacion"));
-                pelicula.setPrecioPelicula(rs.getInt("Precio"));
+                pelicula.setIdPelicula(rs.getInt("idpelicula"));
+                pelicula.setTituloPelicula(rs.getString("titulopelicula"));
+                pelicula.setAutorPelicula(rs.getString("autorpelicula"));
+                pelicula.setPublicacionPelicula(rs.getDate("publicacionpelicula"));
+                pelicula.setPrecioPelicula(rs.getInt("Preciopelicula"));
                 pelicula.setDisponible(rs.getBoolean("disponible"));
                 
                 lista.add(pelicula);

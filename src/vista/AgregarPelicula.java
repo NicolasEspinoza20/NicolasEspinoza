@@ -5,6 +5,13 @@
  */
 package vista;
 
+import controlador.Registro;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import modelo.Pelicula;
+
 /**
  *
  * @author Nicolas Espinoza
@@ -16,6 +23,7 @@ public class AgregarPelicula extends javax.swing.JFrame {
      */
     public AgregarPelicula() {
         initComponents();
+        this.jbtn_salir.requestFocus();
     }
 
     /**
@@ -30,10 +38,8 @@ public class AgregarPelicula extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jlbl_titulo = new javax.swing.JLabel();
         jtxt_ingresartitulo = new javax.swing.JTextField();
-        jrb_si = new javax.swing.JRadioButton();
-        jrb_no = new javax.swing.JRadioButton();
         jlbl_autor = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jtxt_autor = new javax.swing.JTextField();
         jlbl_publicacion = new javax.swing.JLabel();
         jtxt_dia = new javax.swing.JTextField();
         jtxt_mes = new javax.swing.JTextField();
@@ -41,6 +47,7 @@ public class AgregarPelicula extends javax.swing.JFrame {
         jlbl_precio = new javax.swing.JLabel();
         jtxt_precio = new javax.swing.JTextField();
         jlbl_disponible = new javax.swing.JLabel();
+        jchk_disponible = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jbtn_enviar = new javax.swing.JButton();
         jbtn_salir = new javax.swing.JButton();
@@ -53,23 +60,34 @@ public class AgregarPelicula extends javax.swing.JFrame {
         jlbl_titulo.setText("Titulo:");
 
         jtxt_ingresartitulo.setText("Ingresar Titulo:");
-
-        jrb_si.setText("Si");
-
-        jrb_no.setText("No");
+        jtxt_ingresartitulo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtxt_ingresartituloFocusGained(evt);
+            }
+        });
 
         jlbl_autor.setText("Autor:");
 
-        jTextField2.setText("Ingresar Autor:");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jtxt_autor.setText("Ingresar Autor:");
+        jtxt_autor.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtxt_autorFocusGained(evt);
+            }
+        });
+        jtxt_autor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jtxt_autorActionPerformed(evt);
             }
         });
 
         jlbl_publicacion.setText("Fecha de Publicacion");
 
         jtxt_dia.setText("Dia");
+        jtxt_dia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtxt_diaFocusGained(evt);
+            }
+        });
         jtxt_dia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtxt_diaActionPerformed(evt);
@@ -77,6 +95,11 @@ public class AgregarPelicula extends javax.swing.JFrame {
         });
 
         jtxt_mes.setText("Mes");
+        jtxt_mes.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtxt_mesFocusGained(evt);
+            }
+        });
         jtxt_mes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtxt_mesActionPerformed(evt);
@@ -84,10 +107,20 @@ public class AgregarPelicula extends javax.swing.JFrame {
         });
 
         jtxt_año.setText("Año");
+        jtxt_año.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtxt_añoFocusGained(evt);
+            }
+        });
 
         jlbl_precio.setText("Precio");
 
         jtxt_precio.setText("Ingresar Precio:");
+        jtxt_precio.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtxt_precioFocusGained(evt);
+            }
+        });
         jtxt_precio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtxt_precioActionPerformed(evt);
@@ -106,7 +139,7 @@ public class AgregarPelicula extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jlbl_publicacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                            .addComponent(jtxt_autor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                             .addComponent(jtxt_ingresartitulo, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlbl_autor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jlbl_titulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -119,14 +152,11 @@ public class AgregarPelicula extends javax.swing.JFrame {
                                 .addComponent(jtxt_mes, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(42, 42, 42)
                                 .addComponent(jtxt_año, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jrb_si, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jrb_no, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jlbl_disponible, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jtxt_precio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                                .addComponent(jlbl_precio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jlbl_precio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jchk_disponible))
                         .addGap(0, 89, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -139,7 +169,7 @@ public class AgregarPelicula extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jlbl_autor)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtxt_autor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jlbl_publicacion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -153,17 +183,20 @@ public class AgregarPelicula extends javax.swing.JFrame {
                 .addComponent(jtxt_precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jlbl_disponible)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jrb_si)
-                    .addComponent(jrb_no))
-                .addGap(46, 46, 46))
+                .addGap(18, 18, 18)
+                .addComponent(jchk_disponible)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(153, 204, 255));
 
         jbtn_enviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ok.png"))); // NOI18N
         jbtn_enviar.setText("Enviar");
+        jbtn_enviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_enviarActionPerformed(evt);
+            }
+        });
 
         jbtn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton-x.png"))); // NOI18N
         jbtn_salir.setText("Salir");
@@ -222,9 +255,9 @@ public class AgregarPelicula extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtn_salirActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jtxt_autorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_autorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jtxt_autorActionPerformed
 
     private void jtxt_diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_diaActionPerformed
         // TODO add your handling code here:
@@ -238,54 +271,151 @@ public class AgregarPelicula extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxt_precioActionPerformed
 
+    private void jtxt_ingresartituloFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtxt_ingresartituloFocusGained
+        this.jtxt_ingresartitulo.setText("");
+    }//GEN-LAST:event_jtxt_ingresartituloFocusGained
+
+    private void jtxt_autorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtxt_autorFocusGained
+        this.jtxt_autor.setText("");
+    }//GEN-LAST:event_jtxt_autorFocusGained
+
+    private void jtxt_diaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtxt_diaFocusGained
+        this.jtxt_dia.setText("");
+    }//GEN-LAST:event_jtxt_diaFocusGained
+
+    private void jtxt_mesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtxt_mesFocusGained
+        this.jtxt_mes.setText("");
+    }//GEN-LAST:event_jtxt_mesFocusGained
+
+    private void jtxt_añoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtxt_añoFocusGained
+        this.jtxt_año.setText("");
+    }//GEN-LAST:event_jtxt_añoFocusGained
+
+    private void jtxt_precioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtxt_precioFocusGained
+        this.jtxt_precio.setText("");
+    }//GEN-LAST:event_jtxt_precioFocusGained
+
+    private void jbtn_enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_enviarActionPerformed
+        String titulo, autor, dia, mes, año, fechaStr;
+        Date fecha = null;
+        int precio = 0;
+        boolean disponible;
+
+        titulo = this.jtxt_ingresartitulo.getText();
+
+        if (titulo.isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, "Ingrese Titulo", "Validacion", 2);
+            this.jtxt_ingresartitulo.requestFocus();
+            return;
+
+        }
+
+        autor = this.jtxt_autor.getText();
+        if (autor.isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, "Ingrese Autor", "Validacion", 2);
+            this.jtxt_autor.requestFocus();
+            return;
+
+        }
+        dia = this.jtxt_dia.getText();
+        mes = this.jtxt_mes.getText();
+        año = this.jtxt_año.getText();
+
+        if (dia.isEmpty() || mes.isEmpty() || año.isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, "Ingrese Fecha", "Validacion", 2);
+            this.jtxt_dia.requestFocus();
+            return;
+
+        }
+
+        fechaStr = dia + "/" + mes + "/" + año;
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            fecha = formato.parse(fechaStr);
+
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(this, "Ingrese Fecha de formato dd/mm/yyyy", "Validacion", 2);
+            this.jtxt_dia.requestFocus();
+        }
+
+        try {
+
+            precio = Integer.parseInt(this.jtxt_precio.getText());
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El precio debe ser numerico", "Validacion", 2);
+            this.jtxt_precio.requestFocus();
+        }
+
+        disponible = this.jchk_disponible.isSelected();
+        Pelicula pelicula = new Pelicula(0, titulo, autor, fecha, precio, disponible);
+
+        Registro reg = new Registro();
+        if (reg.buscarPelicula(reg.buscarTodos(), titulo) == false) {
+
+            if (reg.agregar(pelicula)) {
+                JOptionPane.showMessageDialog(this, "Se agrego pelicula", "Informacion", 2);
+
+            } else {
+                JOptionPane.showMessageDialog(this, "No se agrego pelicula", "Validacion", 2);
+            }
+        } else {
+
+            JOptionPane.showMessageDialog(this, "La pelicula ya existe", "informacion", 2);
+
+        }
+    }//GEN-LAST:event_jbtn_enviarActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarPelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarPelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarPelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarPelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AgregarPelicula().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(AgregarPelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(AgregarPelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(AgregarPelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(AgregarPelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new AgregarPelicula().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JButton jbtn_enviar;
     private javax.swing.JButton jbtn_salir;
+    private javax.swing.JCheckBox jchk_disponible;
     private javax.swing.JLabel jlbl_autor;
     private javax.swing.JLabel jlbl_disponible;
     private javax.swing.JLabel jlbl_precio;
     private javax.swing.JLabel jlbl_publicacion;
     private javax.swing.JLabel jlbl_titulo;
-    private javax.swing.JRadioButton jrb_no;
-    private javax.swing.JRadioButton jrb_si;
+    private javax.swing.JTextField jtxt_autor;
     private javax.swing.JTextField jtxt_año;
     private javax.swing.JTextField jtxt_dia;
     private javax.swing.JTextField jtxt_ingresartitulo;

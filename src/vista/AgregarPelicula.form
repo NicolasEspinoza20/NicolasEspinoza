@@ -63,7 +63,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="jlbl_publicacion" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextField2" alignment="0" pref="146" max="32767" attributes="0"/>
+                              <Component id="jtxt_autor" alignment="0" pref="146" max="32767" attributes="0"/>
                               <Component id="jtxt_ingresartitulo" alignment="0" max="32767" attributes="0"/>
                               <Component id="jlbl_autor" alignment="0" max="32767" attributes="0"/>
                               <Component id="jlbl_titulo" alignment="0" max="32767" attributes="0"/>
@@ -79,16 +79,12 @@
                                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                                   <Component id="jtxt_año" min="-2" pref="71" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jrb_si" min="-2" pref="98" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jrb_no" min="-2" pref="98" max="-2" attributes="0"/>
-                              </Group>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="jlbl_disponible" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jtxt_precio" alignment="0" pref="145" max="32767" attributes="0"/>
                                   <Component id="jlbl_precio" alignment="0" max="32767" attributes="0"/>
                               </Group>
+                              <Component id="jchk_disponible" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="89" max="32767" attributes="0"/>
                       </Group>
@@ -106,7 +102,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jlbl_autor" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jTextField2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtxt_autor" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jlbl_publicacion" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -121,12 +117,9 @@
                   <Component id="jtxt_precio" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jlbl_disponible" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="15" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jrb_si" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jrb_no" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jchk_disponible" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="43" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -141,28 +134,22 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingresar Titulo:"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JRadioButton" name="jrb_si">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Si"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JRadioButton" name="jrb_no">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="No"/>
-          </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtxt_ingresartituloFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jlbl_autor">
           <Properties>
             <Property name="text" type="java.lang.String" value="Autor:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="jtxt_autor">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingresar Autor:"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtxt_autorFocusGained"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxt_autorActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jlbl_publicacion">
@@ -175,6 +162,7 @@
             <Property name="text" type="java.lang.String" value="Dia"/>
           </Properties>
           <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtxt_diaFocusGained"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxt_diaActionPerformed"/>
           </Events>
         </Component>
@@ -183,6 +171,7 @@
             <Property name="text" type="java.lang.String" value="Mes"/>
           </Properties>
           <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtxt_mesFocusGained"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxt_mesActionPerformed"/>
           </Events>
         </Component>
@@ -190,6 +179,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="A&#xf1;o"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtxt_a&#xf1;oFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jlbl_precio">
           <Properties>
@@ -201,6 +193,7 @@
             <Property name="text" type="java.lang.String" value="Ingresar Precio:"/>
           </Properties>
           <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtxt_precioFocusGained"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxt_precioActionPerformed"/>
           </Events>
         </Component>
@@ -208,6 +201,8 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Disponible:"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="jchk_disponible">
         </Component>
       </SubComponents>
     </Container>
@@ -251,6 +246,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Enviar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtn_enviarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbtn_salir">
           <Properties>
