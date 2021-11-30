@@ -27,32 +27,97 @@ public class EliminarPelicula extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jlbl_ingresarId = new javax.swing.JLabel();
+        jtxt_idBuscar = new javax.swing.JTextField();
+        jbtn_eliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Eliminar Pelicula");
+        setBackground(new java.awt.Color(204, 255, 153));
 
-        jlbl_ingresarId.setText("Ingrese Id Pelicula:");
+        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
+
+        jlbl_ingresarId.setText("Ingrese Id Pelicula :");
+
+        jtxt_idBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxt_idBuscarActionPerformed(evt);
+            }
+        });
+
+        jbtn_eliminar.setText("Eliminar");
+        jbtn_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_eliminarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jlbl_ingresarId, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtxt_idBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(jbtn_eliminar)
+                .addGap(25, 25, 25))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(61, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlbl_ingresarId)
+                    .addComponent(jbtn_eliminar)
+                    .addComponent(jtxt_idBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jlbl_ingresarId, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(327, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
-                .addComponent(jlbl_ingresarId)
-                .addGap(73, 73, 73))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbtn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_eliminarActionPerformed
+
+        int id;
+        id=Integer.parseInt(this.jtxt_idBuscar.getText());
+
+        Registro reg = new Registro();
+
+        int opcion = JOptionPane.showConfirmDialog(this, "Estas seguro que desea eliminar", "Aviso", 0);
+
+        if (opcion == 0) {
+            reg.eliminar(id);
+            JOptionPane.showMessageDialog(null, "Libro eliminado","Aviso",1);
+
+        }else{
+            JOptionPane.showMessageDialog(null, "Libro no fue eliminado","Aviso",2);
+        }
+
+    }//GEN-LAST:event_jbtn_eliminarActionPerformed
+
+    private void jtxt_idBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_idBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxt_idBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -90,6 +155,9 @@ public class EliminarPelicula extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jbtn_eliminar;
     private javax.swing.JLabel jlbl_ingresarId;
+    private javax.swing.JTextField jtxt_idBuscar;
     // End of variables declaration//GEN-END:variables
 }
